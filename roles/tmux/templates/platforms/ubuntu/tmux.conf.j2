@@ -1,0 +1,6 @@
+# copy to X11 clipboard
+if-shell 'command -v xclip > /dev/null 2>&1' '\
+  bind -T copy-mode-vi y send-keys -X copy-pipe-and-cancel "DISPLAY=:0 xclip -i -sel clipboard"'
+
+if-shell 'command -v xclip > /dev/null 2>&1' '\
+  bind p run "DISPLAY=:0 xclip -o | tmux load-buffer - ; tmux paste-buffer"'

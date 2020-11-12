@@ -40,9 +40,11 @@ bind r run -b '\
   tmux source-file ~/.tmux.conf > /dev/null; \
   tmux display-message "Reloaded tmux config!"'
 
-unbind-key n
-bind -n M-p previous-window
-bind -n M-n next-window
+unbind n
+unbind p
+
+bind -n M-. previous-window
+bind -n M-, next-window
 bind -n M-1 select-window -t:1
 bind -n M-2 select-window -t:2
 bind -n M-3 select-window -t:3
@@ -54,21 +56,21 @@ bind -n M-8 select-window -t:8
 bind -n M-9 select-window -t:9
 bind -n M-0 select-window -t:10
 
-bind Enter copy-mode
 bind b list-buffers
-bind \} choose-buffer
+bind p paste-buffer
+bind P choose-buffer
+bind Enter copy-mode
 
 run -b 'tmux bind -t vi-copy v begin-selection 2> /dev/null || true'
 run -b 'tmux bind -T copy-mode-vi v send -X begin-selection 2> /dev/null || true'
-
+run -b 'tmux bind -t vi-copy C-v rectangle-toggle 2> /dev/null || true'
+run -b 'tmux bind -T copy-mode-vi C-v send -X rectangle-toggle 2> /dev/null || true'
 run -b 'tmux bind -t vi-copy Escape send -X cancel 2> /dev/null || true'
 run -b 'tmux bind -T copy-mode-vi Escape send -X cancel 2> /dev/null || true'
-
-run -b 'tmux bind -t vi-copy H send -X start-of-line 2> /dev/null || true'
-run -b 'tmux bind -T copy-mode-vi H send -X start-of-line 2> /dev/null || true'
-
-run -b 'tmux bind -t vi-copy L send -X end-of-line 2> /dev/null || true'
-run -b 'tmux bind -T copy-mode-vi L send -X end-of-line 2> /dev/null || true'
+run -b 'tmux bind -t vi-copy H start-of-line 2> /dev/null || true'
+run -b 'tmux bind -T copy-mode-vi H start-of-line 2> /dev/null || true'
+run -b 'tmux bind -t vi-copy L end-of-line 2> /dev/null || true'
+run -b 'tmux bind -T copy-mode-vi L end-of-line 2> /dev/null || true'
 
 # -- OPTIONS ----------------------------------------------------------------
 

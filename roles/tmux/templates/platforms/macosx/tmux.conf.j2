@@ -1,6 +1,8 @@
-run -b 'tmux bind -t vi-copy v copy-selection 2> /dev/null || true'
-run -b 'tmux bind -T copy-mode-vi y send -X copy-pipe-and-cancel \"pbcopy\" 2> /dev/null || true'
+if-shell 'command -v pbcopy > /dev/null 2>&1' '\
+  bind y run -b "tmux save-buffer - | pbcopy"'
 
-if-shell 'uname | grep -qi Darwin' 'bind -n M-p run "pbpaste | tmux load-buffer - ; tmux paste-buffer"'
-if-shell 'uname | grep -qi Darwin && which reattach-to-user-namespace > /dev/null' '\
-  bind } run "pbpaste | tmux load-buffer - ; tmux paste-buffer"'
+if-shell 'command -v reattach-to-user-namespace > /dev/null 2>&1' '\
+  bind y run -b "tmux save-buffer - | reattach-to-user-namespace pbcopy"'
+
+if-shell 'command -v reattach-to-user-namespace > /dev/null 2>&1' '\
+  bind p run "pbpaste | tmux load-buffer - ; tmux paste-buffer"'
