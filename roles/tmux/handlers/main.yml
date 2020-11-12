@@ -1,0 +1,3 @@
+---
+- name: trigger plugin install
+  shell: "{{ tmux_d }}/plugins/tpm/bin/install_plugins"

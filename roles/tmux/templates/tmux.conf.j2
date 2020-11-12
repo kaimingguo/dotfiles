@@ -1,0 +1,182 @@
+#-
+# Copyright (c) 2019-present Kaiming Guo. All rights reserved.
+# Use of this source code is governed by a BSD-style license that can be
+# found in the LICENSE file.
+#
+# .tmux.conf - tmux configure, read at beginning of execution by each shell
+#
+
+# -- BOOTSTRAP --------------------------------------------------------------
+
+# If `tpm` is not already installed, automatically clone the repository
+# and install all configured plugins.
+if "test ! -d {{ tmux_d }}/plugins/tpm" "run '\
+  git clone https://github.com/tmux-plugins/tpm {{ tmux_d }}/plugins/tpm && \
+  {{ tmux_d }}/plugins/tpm/bin/install_plugins'"
+
+# notes and workarounds for accessing the macOS pasteboard in tmux session
+if 'test "$(uname -s)" = Darwin' '\
+  set-option -g default-command "reattach-to-user-namespace -l $SHELL"'
+
+# -- PLUGINS ----------------------------------------------------------------
+
+set -g @plugin 'tmux-plugins/tpm'
+set -g @plugin 'tmux-plugins/tmux-prefix-highlight'
+set -g @plugin 'tmux-plugins/tmux-copycat'
+set -g @plugin 'tmux-plugins/tmux-pain-control'
+
+# -- PLUGIN OPTIONS ---------------------------------------------------------
+
+set -g @prefix_highlight_show_copy_mode 'on'
+set -g @prefix_highlight_copy_mode_attr 'fg=black,bg=yellow,bold'
+set -g @prefix_highlight_prefix_prompt 'Wait'
+set -g @prefix_highlight_copy_prompt 'Copy'
+
+# -- KEY BINDINGS -----------------------------------------------------------
+
+# Reload the file with Prefix-R
+unbind r
+bind r run -b '\
+  tmux source-file ~/.tmux.conf > /dev/null; \
+  tmux display-message "Reloaded tmux config!"'
+
+unbind-key n
+bind -n M-p previous-window
+bind -n M-n next-window
+bind -n M-1 select-window -t:1
+bind -n M-2 select-window -t:2
+bind -n M-3 select-window -t:3
+bind -n M-4 select-window -t:4
+bind -n M-5 select-window -t:5
+bind -n M-6 select-window -t:6
+bind -n M-7 select-window -t:7
+bind -n M-8 select-window -t:8
+bind -n M-9 select-window -t:9
+bind -n M-0 select-window -t:10
+
+bind Enter copy-mode
+bind b list-buffers
+bind \} choose-buffer
+
+run -b 'tmux bind -t vi-copy v begin-selection 2> /dev/null || true'
+run -b 'tmux bind -T copy-mode-vi v send -X begin-selection 2> /dev/null || true'
+
+run -b 'tmux bind -t vi-copy Escape send -X cancel 2> /dev/null || true'
+run -b 'tmux bind -T copy-mode-vi Escape send -X cancel 2> /dev/null || true'
+
+run -b 'tmux bind -t vi-copy H send -X start-of-line 2> /dev/null || true'
+run -b 'tmux bind -T copy-mode-vi H send -X start-of-line 2> /dev/null || true'
+
+run -b 'tmux bind -t vi-copy L send -X end-of-line 2> /dev/null || true'
+run -b 'tmux bind -T copy-mode-vi L send -X end-of-line 2> /dev/null || true'
+
+# -- OPTIONS ----------------------------------------------------------------
+
+# Set the default terminal for new windows created in the session - the
+# default value of the $TERM environment variable.
+set-option -g default-terminal "xterm-256color"
+
+# Set the time in milliseconds for which `tmux' waits after an escape is input
+# to determine if it is part of a function or meta key sequences.
+set-option -sg escape-time 0
+
+# Supports 256 colours with the SGR escape sequences.
+set-option -ga terminal-overrides ",xterm-256color:Tc"
+
+# Set the base index from which an unused index should be searched when a
+# new window is created.
+set-option -g base-index 1
+
+# Set the maximum number of lines held in window history.
+set-option -g history-limit 4096
+
+# Set status line message style.
+set-option -g message-style fg=default,bg=default
+
+# tmux captures the mouse and allows mouse events to be bound as key bindings.
+set-option -g mouse on
+
+# If on, when a window is closed in a session, automatically renumber the
+# other windows in numerical order.
+set-option -g renumber-windows on
+
+# Attempt to set the client terminal title using the tsl and fsl terminfo(5)
+# entries if they exist.
+set-option -g set-titles on
+
+# String used to set the client terminal title if set-titles is on.
+set-option -g set-titles-string '#h ❐ #S ● #I #W'
+
+# Show or hide the status line or specify its size.  Using 'on' gives a status
+# line one row in height; '2', '3', '4' or '5' more rows.
+set-option -g status on
+
+# Update the status line every 1 seconds.
+set-option -g status-interval 1
+
+# Set the position of the window list component of the status line.
+set-option -g status-justify "left"
+
+# Use vi key bindings in the status line, for example at the command prompt.
+set-option -g status-keys vi
+set-window-option -g mode-keys vi
+
+# Set window mode style.
+set-window-option -g mode-style fg=default,bg=brightblack
+
+# Display string to the left of the status line.
+set-option -g status-left ""
+
+# Set the maximum length of the left component of the status line.
+#set-option -g status-left-length 10
+
+# Set the position of the status line.
+set-option -g status-position "bottom"
+
+# Display string to the right of the status line.
+set-option -g status-right "#{prefix_highlight} #[fg=brightwhite,bg=brightblack] #h "
+
+# Set the maximum length of the right component of the status line.
+set-option -g status-right-length 40
+
+# set status line style.
+set-option -g status-style bg=default,fg=default
+
+# Aggressively resize the chose window.
+set-window-option -g aggressive-resize on
+
+# Control automatic window renaming.
+set-window-option -g automatic-rename on
+
+# Monitor for activity in the window.  Windows with activity are highlighted
+# in the status line.
+set-window-option -g monitor-activity on
+set-option -g visual-activity on
+
+# Like window-status-format, but is the format used when the window is
+# the current window.
+set-option -g window-status-current-format ' #I:#W '
+
+# Set the format in which the window is displayed in the status line window
+# list.  See the FORMATS and STYLES sections.
+set-option -g window-status-format ' #I:#W '
+
+# Sets the separator drawn between windows in the status line.
+set-option -g window-status-separator ' '
+
+# Set status line style for the currently active window.
+set-window-option -g window-status-current-style fg=brightwhite,bg=brightblack
+
+# Set status line style for a single window.
+set-window-option -g window-status-style fg=default,bg=default,dim
+
+{% include 'hosts/' + ansible_hostname + '/tmux.conf.j2' ignore missing %}
+{% include 'platforms/' + ansible_distribution|lower + '/tmux.conf.j2' ignore missing %}
+
+
+# -- PRELOADING -------------------------------------------------------------
+
+# Initialize and run tpm
+run "{{ tmux_d }}/plugins/tpm/tpm"
+
+# vim: set tabstop=2 softtabstop=2 shiftwidth=2 expandtab filetype=tmux :
