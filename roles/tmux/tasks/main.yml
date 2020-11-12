@@ -1,0 +1,23 @@
+---
+- name: copy tmux conf file
+  template:
+    src: templates/tmux.conf.j2
+    dest: "$HOME/.tmux.conf"
+    backup: "{{ backup }}"
+  notify: trigger plugin install
+  tags:
+    - tmux
+
+- name: create tmux plugin directory
+  file:
+    path: "{{ tmux_d }}/plugins"
+    state: directory
+  tags:
+    - tmux
+
+- name: install tpm
+  git:
+    repo: "https://github.com/tmux-plugins/tpm"
+    dest: "{{ tmux_d }}/plugins/tpm"
+  tags:
+    - tmux
