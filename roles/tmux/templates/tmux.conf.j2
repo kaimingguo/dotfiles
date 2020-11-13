@@ -181,4 +181,6 @@ set-window-option -g window-status-style fg=default,bg=default,dim
 # Initialize and run tpm
 run "{{ tmux_d }}/plugins/tpm/tpm"
 
+if-shell "[ -f $HOME/.tmux_local.conf ]" 'source $HOME/.tmux_local.conf'
+
 # vim: set tabstop=2 softtabstop=2 shiftwidth=2 expandtab filetype=tmux :
