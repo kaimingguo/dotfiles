@@ -32,6 +32,12 @@ The stack can be deployed using the following command:
 ansible-playbook site.yml
 ```
 
+## Details
+
+- CLI
+  - [tmux](https://github.com/tmux/tmux) - A terminal multiplexer.
+  - [TCSH](https://www.tcsh.org) - C shell with file name completion and command line editing.
+
 ## License
 
 Distributed under the BSD 2-Clause license, see [LICENSE](./LICENSE) for
