@@ -1,0 +1,18 @@
+#-
+# Copyright 2019 Kaiming Guo. All rights reserved.
+# Use of this source code is governed by a BSD-style license that can be
+# found int the LICENSE file.
+#
+# login - csh login script, read by login shell, after `.cshrc' at login.
+#
+# see also csh(1), environ(7).
+#
+
+# Query terminal size; useful for serial lines
+if ( -x /usr/bin/resizewin ) /usr/bin/resizewin -z
+
+# Display a random cookie on each login
+#if ( -x /usr/bin/fortune ) /usr/bin/fortune -s
+
+# vim: set tabstop=8 softtabstop=8 shiftwidth=8 noexpandtab filetype=csh :
+# vim: set foldenable foldmethod=indent foldlevelstart=10 :
