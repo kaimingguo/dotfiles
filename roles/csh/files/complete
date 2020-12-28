@@ -1,0 +1,38 @@
+#
+# $tcsh: complete,v v1.0 2020/12/29 00:43:21 augustin Exp $
+#
+
+if ( $?tcsh ) then
+	if ( $tcsh != 1 ) then
+		set rev = $tcsh:r
+		set rel = $rev:e
+		set pat = $tcsh:e
+		set rev = $rev:r
+	endif
+	if ( $rev > 5 && $rel > 1 ) then
+		set _complete = 1
+	endif
+	unset rev rel pat
+endif
+
+if ( !$?noglob ) set noglob _unset_noglob
+if ( $?_complete ) then
+	if ( !$?hosts ) then
+		set hosts = ()
+		# Setup $host from ~/.hosts, ~/.rhosts, ~/.ssh/known_hosts
+		foreach f ( $home/.hosts $home/.rhosts $home/.ssh/known_hosts )
+			if ( -r "$f" ) then
+				set hosts = ( $hosts `awk -F'[ ,:]' '/^[0-9a-zA-Z]/{sub(/\]/,"",$1); print $1}' "$f"`)
+			endif
+		end
+		unset f
+	endif
+	uncomplete rcp rsh
+endif
+set hosts = ( `echo $hosts | tr ' ' '\012' | sort -u` )
+
+complete ssh	p/1/\$hosts/ c/-/"(l n)"/   n/-l/u/ N/-l/c/ n/-/c/ p/2/c/ p/*/f/
+complete cd	p/1/d/
+
+# vim: set tabstop=8 softtabstop=8 shiftwidth=8 noexpandtab filetype=tcsh :
+# vim: set foldenable foldmethod=indent foldlevelstart=10 :

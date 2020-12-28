@@ -1,0 +1,42 @@
+---
+- name: copy csh login script file
+  copy:
+    src: login
+    dest: "$HOME/.login"
+    backup: "{{ backup }}"
+  tags:
+    - csh
+
+- name: create cshrc.d directory
+  file:
+    path: "$HOME/.cshrc.d"
+    state: directory
+  tags:
+    - csh
+
+- name: create csh resource script file
+  template:
+    src: cshrc.j2
+    dest: "$HOME/.cshrc"
+    backup: "{{ backup }}"
+    mode: 0644
+  tags:
+    - csh
+
+- name: copy aliases file
+  copy:
+    src: aliases
+    dest: "$HOME/.cshrc.d/aliases"
+    backup: "{{ backup }}"
+    mode: 0644
+  tags:
+    - csh
+
+- name: copy complete file
+  copy:
+    src: complete 
+    dest: "$HOME/.cshrc.d/complete"
+    backup: "{{ backup }}"
+    mode: 0644
+  tags:
+    - csh

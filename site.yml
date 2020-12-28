@@ -1,6 +1,7 @@
 ---
 - hosts: all
   vars:
-    backup: false
+    backup: true
   roles:
+    - {role: csh, tags: ['csh']}
     - {role: tmux, tags: ['tmux']}
