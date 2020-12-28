@@ -1,0 +1,4 @@
+---
+- name: trigger plugin install
+  command: "vim +PlugInstall +qall"
+  when: vim_install_plugins
