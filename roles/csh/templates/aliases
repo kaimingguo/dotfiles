@@ -14,5 +14,8 @@ if ( $?tcsh ) then
 	alias cd	'pushd'
 endif
 
+{% include 'hosts/' + ansible_hostname|lower + '/aliases' ignore missing %}
+{% include 'platforms/' + ansible_distribution|lower + '/aliases' ignore missing %}
+
 # vim: set tabstop=8 softtabstop=8 shiftwidth=8 noexpandtab filetype=csh :
 # vim: set foldenable foldmethod=indent foldlevelstart=10 :

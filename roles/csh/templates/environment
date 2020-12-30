@@ -1,0 +1,9 @@
+#
+# $tcsh: environment,v v1.0 12/30/2020 19:31:58 CST augustin Exp $
+#
+
+{% include 'hosts/' + ansible_hostname|lower + '/environment' ignore missing %}
+{% include 'platforms/' + ansible_distribution|lower + '/environment' ignore missing %}
+
+# vim: set tabstop=8 softtabstop=8 shiftwidth=8 noexpandtab filetype=csh :
+# vim: set foldenable foldmethod=indent foldlevelstart=10 :

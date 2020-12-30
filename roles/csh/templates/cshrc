@@ -17,6 +17,7 @@ endif
 
 # Load aliases
 if ( -r "$home/.cshrc.d/aliases" ) source $home/.cshrc.d/aliases
+if ( -r "$home/.cshrc.d/environment" ) source $home/.cshrc.d/environment
 
 # A righteouse umask
 umask 22
@@ -135,15 +136,8 @@ if ( $?prompt ) then
 		if ( -r "$home/.cshrc.d/complete" ) source $home/.cshrc.d/complete
 	endif
 
-	switch ( "$OSTYPE" )
-	case bsd44:
-	case darwin:
-	case FreeBSD:
-	case NetBSD:
-		stty status ^G
-		if ( $?tcsh ) bindkey ^G stuff-char
-		breaksw
-	endsw
+{% include 'hosts/' + ansible_hostname|lower + '/cshrc' ignore missing %}
+{% include 'platforms/' + ansible_distribution|lower + '/cshrc' ignore missing %}
 
 	if ( $uid == 0 ) then
 		unset savehist
@@ -161,6 +155,9 @@ if ( $?local_rc ) unset local_rc
 if ( -d "$home/bin" && "$path" !~ *"$home/bin"* ) set path = ( $home/bin $path )
 if ( -d "$home/.local/bin" && "$path" !~ *"$home/.local/bin"* ) then
 	set path = ( $home/.local/bin $path )
+endif
+if ( -d "$home/.local/share/man" ) then
+	setenv MANPATH "$home/.local/share/man:$MANPATH"
 endif
 
 # vim: set tabstop=8 softtabstop=8 shiftwidth=8 noexpandtab filetype=tcsh :

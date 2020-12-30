@@ -1,0 +1,10 @@
+# MacPorts environment
+set path = ( /opt/local/{bin,sbin} $path )
+setenv MANPATH "/opt/local/share/man:`man -w`"
+setenv DISPLAY :0
+
+set python_home = "/opt/local/Library/Frameworks/Python.framework/Versions/Current"
+if ( -d $python_home && "$path" !~ *"$python_home"* ) then
+	set path = ( $python_home/bin $path )
+endif
+if ( -d $python_home ) unset python_home

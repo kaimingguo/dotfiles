@@ -1,0 +1,4 @@
+if ( -d "/Applications/Google\ Chrome.app" ) then
+	alias chrome 	'open -n /Applications/Google\ Chrome.app --args --new-window'
+endif
+alias firefox 'open -a firefox --args'

@@ -16,17 +16,26 @@
 
 - name: create csh resource script file
   template:
-    src: cshrc.j2
+    src: cshrc
     dest: "$HOME/.cshrc"
     backup: "{{ backup }}"
     mode: 0644
   tags:
     - csh
 
-- name: copy aliases file
-  copy:
+- name: create aliases file
+  template:
     src: aliases
     dest: "$HOME/.cshrc.d/aliases"
+    backup: "{{ backup }}"
+    mode: 0644
+  tags:
+    - csh
+
+- name: create environment file
+  template:
+    src: environment
+    dest: "$HOME/.cshrc.d/environment"
     backup: "{{ backup }}"
     mode: 0644
   tags:
