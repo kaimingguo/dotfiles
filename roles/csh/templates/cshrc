@@ -10,14 +10,12 @@
 #
 
 unalias *
-
 if ( -e `where vim` ) then
 	alias vi vim
 endif
 
 # Load aliases
 if ( -r "$home/.cshrc.d/aliases" ) source $home/.cshrc.d/aliases
-if ( -r "$home/.cshrc.d/environment" ) source $home/.cshrc.d/environment
 
 # A righteouse umask
 umask 22
@@ -29,6 +27,8 @@ setenv BLOCKSIZE K
 setenv LANG en_US.UTF-8
 setenv LC_CTYPE en_US.UTF-8
 setenv LC_ALL en_US.UTF-8
+
+if ( -r "$home/.cshrc.d/environment" ) source $home/.cshrc.d/environment
 
 if ( $?prompt ) then
 	set prompt = '%N@%m:%B%c02%b%# '
@@ -114,9 +114,6 @@ if ( $?prompt ) then
 
 	# tcsh-specific features
 	if ( $?tcsh ) then
-		# Select vi bindings
-		bindkey -v
-
 		bindkey " " magic-space
 		bindkey "^W" backward-delete-word
 		bindkey "^Z" run-fg-editor
