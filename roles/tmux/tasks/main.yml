@@ -1,7 +1,7 @@
 ---
 - name: copy tmux conf file
   template:
-    src: templates/tmux.conf.j2
+    src: templates/tmux.conf
     dest: "$HOME/.tmux.conf"
     backup: "{{ backup }}"
   notify: trigger plugin install
