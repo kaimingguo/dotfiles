@@ -1,0 +1,14 @@
+# this variable is set by the postfight script to prepend the
+# MacPorts executable paths to the current path as shown. This
+# puts the MacPorts paths at the front of `PATH' so that the
+# MacPorts binaries will take precedence over vendor-supplied
+# binaries.
+export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
+
+# add `MANPATH' variable
+export MANPATH="/opt/local/share/man:`man -w`"
+export DISPLAY=:0
+
+# set python environment
+PYTHON_HOME=/opt/local/Library/Frameworks/Python.framework/Versions/Current
+export PATH="$PYTHON_HOME/bin:$PYTHON_HOME/sbin:$PATH"
