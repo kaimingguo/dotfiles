@@ -1,0 +1,24 @@
+---
+- name: copy profile script file
+  copy:
+    src: bash_profile
+    dest: "$HOME/.bash_profile"
+    backup: "{{ backup }}"
+  tags:
+    - bash
+
+- name: create bashrc.d directory
+  file:
+    path: "$HOME/.bashrc.d"
+    state: directory
+  tags:
+    - bash
+
+- name: create bashrc script file
+  template:
+    src: bashrc
+    dest: "$HOME/.bashrc"
+    backup: "{{ backup }}"
+    mode: 0644
+  tags:
+    - bash
