@@ -6,21 +6,6 @@ Self-contained, pretty and versatile `.tmux.conf` configuration file.
 
 - `xclip` for X11 clipboard support
 
-### macOS specific requirements
-
-Notes and workarounds for accessing the macOS pasteboard in tmux session. use
-[reattach-to-user-namespace][chrisjohnsen-tmux-macosx-pasteboard-repo].
-
-Alternatively, you can install it with __MacPorts__ or __Homebrew__:
-
-```sh
-# Install tool from MacPorts
-sudo port install tmux-pasteboard
-
-# Install tool from Homebrew
-brew install reattach-to-user-namespace
-```
-
 ## Bindings
 
 Use [tmux-pain-control][tmux-plugins-pain-control] for control pane:
@@ -59,12 +44,12 @@ Bindings for `copy-mode-vi`:
 
 While this configuration tries to bring sane default settings, you may want to
 customize it further to your needs. Instead of altering the `~/.tmux.conf` file
-and diverging from upstream, the proper way is to edit the `~/.tmux_local.conf`
+and diverging from upstream, the proper way is to edit the `~/.tmux/local.conf`
 file.
 
 ```sh
 # Create new local tmux configuration
-$ touch $HOME/.tmux_local.conf
+$ touch $HOME/.tmux/local.conf
 ```
 
 ## Plugins

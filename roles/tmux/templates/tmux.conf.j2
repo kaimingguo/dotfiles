@@ -14,10 +14,6 @@ if "test ! -d {{ tmux_d }}/plugins/tpm" "run '\
   git clone https://github.com/tmux-plugins/tpm {{ tmux_d }}/plugins/tpm && \
   {{ tmux_d }}/plugins/tpm/bin/install_plugins'"
 
-# notes and workarounds for accessing the macOS pasteboard in tmux session
-if 'test "$(uname -s)" = Darwin' '\
-  set-option -g default-command "reattach-to-user-namespace -l $SHELL"'
-
 # -- PLUGINS ----------------------------------------------------------------
 
 set -g @plugin 'tmux-plugins/tpm'
@@ -181,6 +177,6 @@ set-window-option -g window-status-style fg=default,bg=default,dim
 # Initialize and run tpm
 run "{{ tmux_d }}/plugins/tpm/tpm"
 
-if-shell "[ -f $HOME/.tmux_local.conf ]" 'source $HOME/.tmux_local.conf'
+if-shell "[ -f $HOME/.tmux/local.conf ]" 'source $HOME/.tmux/local.conf'
 
 # vim: set tabstop=2 softtabstop=2 shiftwidth=2 expandtab filetype=tmux :
