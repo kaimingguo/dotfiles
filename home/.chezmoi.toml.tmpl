@@ -1,0 +1,25 @@
+{{- $ephemeral := false -}}
+
+{{/* work around unreliable hostname on darwin */}}
+{{- $hostname := .chezmoi.hostname -}}
+{{- if eq .chezmoi.os "darwin" -}}
+{{-   $computerName := output "scutil" "--get" "ComputerName" | trim -}}
+{{-   if eq $computerName "Guo's MacBook Pro" -}}
+{{-     $hostname = "guos-mbp" -}}
+{{-   else -}}
+{{-     $hostname = $computerName -}}
+{{-   end -}}
+{{- end -}}
+
+{{- if eq .chezmoi.os "windows" -}}
+{{-   $ephemeral = true -}}
+{{- end -}}
+
+{{- $email := "me@kaiming.io" -}}
+{{- $name := "Kaiming Guo" -}}
+
+[data]
+ephemeral = {{ $ephemeral }}
+name = {{ $name | quote }}
+email = {{ $email | quote }}
+hostname = {{ $hostname | quote }}
