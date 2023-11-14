@@ -1,0 +1,71 @@
+# -*-mode:toml-*- vim:ts=2:sts=2:sw=2:et:ft=toml:
+
+[".vim/pack/itchyny/start/lightline.vim"]
+type = "git-repo"
+url = "https://github.com/itchyny/lightline.vim"
+refreshPeriod = "168h"
+
+[".vim/pack/ayu-theme/opt/ayu-vim"]
+type = "git-repo"
+url = "https://github.com/ayu-theme/ayu-vim"
+refreshPeriod = "168h"
+
+[".vim/pack/prabirshrestha/start/vim-lsp"]
+type = "git-repo"
+url = "https://github.com/prabirshrestha/vim-lsp"
+refreshPeriod = "168h"
+
+[".vim/pack/prabirshrestha/start/asyncomplete.vim"]
+type = "git-repo"
+url = "https://github.com/prabirshrestha/asyncomplete.vim"
+refreshPeriod = "168h"
+
+[".vim/pack/prabirshrestha/start/asyncomplete-lsp.vim"]
+type = "git-repo"
+url = "https://github.com/prabirshrestha/asyncomplete-lsp.vim"
+refreshPeriod = "168h"
+
+[".vim/pack/prabirshrestha/start/asyncomplete-buffer.vim"]
+type = "git-repo"
+url = "https://github.com/prabirshrestha/asyncomplete-buffer.vim"
+refreshPeriod = "168h"
+
+[".vim/pack/prabirshrestha/start/async.vim"]
+type = "git-repo"
+url = "https://github.com/prabirshrestha/async.vim"
+refreshPeriod = "168h"
+
+[".vim/pack/mattn/start/vim-lsp-settings"]
+type = "git-repo"
+url = "https://github.com/mattn/vim-lsp-settings"
+refreshPeriod = "168h"
+
+[".vim/pack/tpope/start/vim-sleuth"]
+type = "git-repo"
+url = "https://github.com/tpope/vim-sleuth"
+refreshPeriod = "168h"
+
+[".vim/pack/justinmk/start/vim-gtfo"]
+type = "git-repo"
+url = "https://github.com/justinmk/vim-gtfo"
+refreshPeriod = "168h"
+
+[".vim/pack/andymass/start/vim-matchup"]
+type = "git-repo"
+url = "https://github.com/andymass/vim-matchup"
+refreshPeriod = "168h"
+
+[".vim/pack/easymotion/start/vim-easymotion"]
+type = "git-repo"
+url = "https://github.com/easymotion/vim-easymotion"
+refreshPeriod = "168h"
+
+[".vim/pack/dyng/start/ctrlsf.vim"]
+type = "git-repo"
+url = "https://github.com/dyng/ctrlsf.vim"
+refreshPeriod = "168h"
+
+[".vim/pack/vimwiki/start/vimwiki"]
+type = "git-repo"
+url = "https://github.com/vimwiki/vimwiki"
+refreshPeriod = "168h"
