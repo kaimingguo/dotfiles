@@ -323,6 +323,23 @@ nnoremap S <plug>(easymotion-overwin-f)
 noremap <leader>j <plug>(easymotion-j)
 noremap <leader>k <plug>(easymotion-k)
 " 2}}}
+" vimwiki {{{2
+let g:vimwiki_global_ext = 0
+
+let g:vimwiki_list = get(g:, 'vimwiki_list', [])
+for vimwiki in g:vimwiki_list
+  let s:vim_path = exists('*stdpath')
+        \ ? stdpath('config')
+        \ : fnamemodify(resolve(expand('<sfile>:p')), ':h')
+
+  if !has_key(vimwiki, 'template_path')
+    let vimwiki.template_path = s:vim_path . '/templates/'
+  endif
+  if !has_key(vimwiki, 'custom_wiki2html')
+    let vimwiki.custom_wiki2html = s:vim_path . '/scripts/wiki2html.sh'
+  endif
+endfor
+" 2}}}
 " 1}}}
 
 if filereadable(expand('~/.vim_after'))

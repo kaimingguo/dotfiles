@@ -12,6 +12,8 @@ This also requires `python`, `git` support.
 
 Use `pack` to management plug-ins.
 
+- `vimwiki`: requirement `pandoc` to generate HTML file.
+
 ## Configuration
 
 You can add `~/.vim_profile` to set up variables and `~/.vim_after`
@@ -86,3 +88,9 @@ endfunction
 ## Mappings
 
 The leader key use `,`, so when ever you see `<leader>` it meas `,` key.
+
+## Extensions
+
+### Vimwiki
+
+<!-- TODO: Use vimwiki_default configuration sample here. -->
