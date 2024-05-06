@@ -1,4 +1,5 @@
 .config/csh/init.csh
+.config/csh/after.csh
 
 .vim_profile
 .vim_after

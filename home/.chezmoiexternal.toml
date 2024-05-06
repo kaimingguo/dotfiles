@@ -74,3 +74,8 @@ refreshPeriod = "168h"
 type = "git-repo"
 url = "https://github.com/Exafunction/codeium.vim"
 refreshPeriod = "168h"
+
+[".vim/pack/rhysd/start/conflict-marker.vim"]
+type = "git-repo"
+url = "https://github.com/rhysd/conflict-marker.vim"
+refreshPeriod = "168h"
