@@ -1,0 +1,44 @@
+#!/bin/csh -f
+
+onintr -
+if (! $?prompt ) goto end
+
+alias h 	'history \!* 25'
+alias j		jobs -l
+alias ls 	ls --color
+alias la	ls -aF
+alias lf	ls -FA
+alias ll 	ls -lAF
+
+alias md	mkdir -p
+alias rd 	rmdir
+alias cd	pushd
+
+if ( -e `where vim` ) then
+	alias vi vim
+endif
+
+alias c		clear
+alias q 	exit
+
+alias today     'date -u "+%Y-%m-%d %H:%M:%S"'
+
+alias .		pwd
+alias ..	cd ..
+alias ../	cd ../
+alias ...	cd ../..
+alias .../	cd ../../
+alias \~	cd ~
+alias -		cd -
+alias /		cd /
+
+{{ if eq .chezmoi.os "darwin" -}}
+alias tmux 	'env TERM=screen-256color-bce tmux'
+alias xcode	'open -a Xcode'
+alias safari	'open -a Safari'
+alias brave	'open -a "Brave Browser"'
+{{- end }}
+
+end:
+	onintr
+
