@@ -1,4 +1,5 @@
-" commands.vim
+" -*- mode: vim -*-
+" vi: set ft=vim :
 
 " vint: -ProhibitAbbreviationOption
 let s:save_cpo = &cpo
@@ -29,6 +30,3 @@ command! Bclose call <sid>BufClose()
 let &cpo = s:save_cpo
 unlet s:save_cpo
 " vint: +ProhibitAbbreviationOption
-
-" vim: set tabstop=2 softtabstop=2 shiftwidth=2 expandtab textwidth=78 :
-" vim: set fileencoding=utf-8 filetype=vim foldenable foldmethod=marker :

@@ -1,11 +1,13 @@
-" Copyright (c) 2019-present Kaiming Guo. All rights reserved.
-" Use of this source code is governed by a BSD-style license that can be
-" found in the LICENSE file.
+" -*- mode: vim -*-
+" vi: set ft=vim :
 
 set encoding=utf-8
 scriptencoding utf-8
 
-" Compatibility -------------------------------------------------------- {{{1
+" -------------
+" Compatibility
+" -------------
+
 " set 'nocompatible' to ward off unexpected things that your distro might
 " have made, as well as sanely reset options when re-sourcing .vimrc
 if has('vim_starting')
@@ -21,9 +23,11 @@ endif
 " Initialize base requirements
 let g:mapleader = get(g:, 'mapleader', "\<Space>")
 let mapleader = g:mapleader
-" 1}}}
 
-" Text Editor ---------------------------------------------------------- {{{1
+" -----------
+" Text Editor
+" -----------
+
 " Encoding and file formats
 set fileencoding=utf-8
 set fileencodings=ucs-bom,utf-8,big5,cp936,latin1,cp950
@@ -32,7 +36,7 @@ if exists('+termencoding')
 endif
 set fileformats=unix,dos,mac
 
-" File type detection and syntax 
+" File type detection and syntax
 filetype plugin indent on
 syntax enable
 
@@ -76,9 +80,11 @@ set formatoptions=tcqrn1
 if v:version > 703 || v:version == 703 && has('patch541')
   set formatoptions+=j " Delete comment characters when joining commented lines
 endif
-" 1}}}
 
-" Workbench ------------------------------------------------------------ {{{1
+"----------
+" Workbench
+" ---------
+
 " GUI Settings
 if has('gui_running')
   set guioptions=Mc!
@@ -127,9 +133,11 @@ set splitbelow
 set noerrorbells
 set novisualbell
 set t_vb=
-" 1}}}
 
-" Features ------------------------------------------------------------- {{{1
+" --------
+" Features
+" --------
+
 set history=500
 
 " Command line completion
@@ -214,12 +222,8 @@ elseif executable('ag')
   set grepprg=ag\ --nogroup\ --nocolor\ --vimgrep
   set grepformat=%f:%l:%c:%m
 endif
-" 1}}}
 
 " Load end user-specific settings if file exists
 if filereadable(expand('$HOME/.vim_after'))
   execute 'source' fnameescape(expand('$HOME/.vim_after'))
 endif
-
-" vi: set tabstop=2 softtabstop=2 shiftwidth=2 expandtab textwidth=78 :
-" vi: set foldenable foldmethod=marker filetype=vim :

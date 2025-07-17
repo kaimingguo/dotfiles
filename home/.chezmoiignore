@@ -1,0 +1,15 @@
+{{- if ne .chezmoi.os "windows" -}}
+vimfiles
+_vimrc
+{{- else -}}
+.config
+.vim
+.bash_logout
+.bashrc
+.cshrc
+.login
+.login_conf
+.profile
+.tmux.conf
+.vimrc
+{{- end -}}
