@@ -1,4 +1,5 @@
 {{- if ne .chezmoi.os "windows" -}}
+AppData
 vimfiles
 _vimrc
 {{- else -}}
