@@ -1,0 +1,10 @@
+{{- $vimPackDir := ".vim/pack" -}}
+{{- if eq .chezmoi.os "windows" -}}
+{{-   $vimPackDir = "vimfiles/pack" -}}
+{{- end -}}
+
+[data]
+    vimPackDir = {{ $vimPackDir | quote }}
+
+[github]
+    refreshPeriod = "12h"
