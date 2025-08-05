@@ -1,0 +1,9 @@
+
+{{ if ne .chezmoi.os "windows" }}
+[".vim/pack/github/start/copilot.vim"]
+{{ else }}
+["vimfiles/pack/github/start/copilot.vim"]
+{{ end }}
+type = "git-repo"
+url = "https://github.com/github/copilot.vim.git"
+refreshPeriod = "168h"
