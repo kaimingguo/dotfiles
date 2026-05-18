@@ -21,11 +21,6 @@ endif
 # A righteous umask
 # umask 22
 
-# Docker
-if ( -f "$home/.docker/init-csh.sh" && -r "$home/.docker/init-csh.sh" ) then
-	source "$home/.docker/init-csh.sh"
-endif
-
 if ( -f "$home/.config/csh/environment.csh" && -r "$home/.config/csh/environment.csh" ) then
 	source "$home/.config/csh/environment.csh"
 endif
@@ -134,4 +129,3 @@ endif
 if ( -e `where starship` ) then
 	eval `starship init tcsh --print-full-init`
 endif
-

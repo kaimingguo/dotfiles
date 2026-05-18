@@ -27,8 +27,12 @@ if ( $?_complete ) then
 
 	complete finger		'c/*@/$hosts/' 'p/1/u/@'
 
-	complete git \
-		'p/1/{branch commit config push pull status}/'
+	set _gitcmds = (add branch checkout clone commit config diff fetch grep init \
+		log merge mv pull push rebase reset rm show stash status tag)
+
+	complete git "p/1/(`echo ${_gitcmds}`)/"
+
+	unset _gitcmds
 	
 	unset noglob
 	unset _complete

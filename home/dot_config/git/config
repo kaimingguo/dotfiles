@@ -1,0 +1,6 @@
+[user]
+	name = "Kaiming Guo"
+	email = "me@kaiming.io"
+
+[includeIf "gitdir:**/opt-*/"]
+	path = config-work

@@ -223,6 +223,25 @@ elseif executable('ag')
   set grepformat=%f:%l:%c:%m
 endif
 
+" ----------
+" Extensions
+" ----------
+
+" Disable Lua acceleration in vim-lsp (Lua 5.5 is incompatible with Vim's Lua interface)
+let g:lsp_use_lua = 0
+
+try
+  set background=dark
+  silent! colorscheme catppuccin_mocha
+catch /^Vim\%((\a\+)\)\=:E185/
+  " Fallback to default colorscheme if catppuccin is not available
+  colorscheme default
+endtry
+
+let g:lightline = {
+      \ 'colorscheme': 'catppuccin_mocha',
+      \ }
+
 " Load end user-specific settings if file exists
 if filereadable(expand('$HOME/.vim_after'))
   execute 'source' fnameescape(expand('$HOME/.vim_after'))
