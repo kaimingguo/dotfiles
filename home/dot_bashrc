@@ -117,3 +117,7 @@ if [ -f "$HOME/.cargo/env" ] ; then
   . $HOME/.cargo/env
 fi
 
+# Antigravity IDE
+if [ -d "$HOME/.antigravity-ide/antigravity-ide/bin" ] ; then
+  export PATH="$HOME/.antigravity-ide/antigravity-ide/bin:$PATH"
+fi
