@@ -1,0 +1,39 @@
+# -*- mode: csh; tab-width: 8; indent-tabs-mode: t -*- ;; Emacs
+# vi: set filetype=csh tabstop=8 shiftwidth=8 noexpandtab :: Vi/ViM
+
+onintr -
+
+# ---------------------------------------------------------------------------
+# SDK / toolchain roots
+# ---------------------------------------------------------------------------
+# setenv ANDROID_HOME   "$home/Android/sdk"
+# setenv ANDROID_NDK    "$ANDROID_HOME/ndk/27.0.12077973"
+# setenv JAVA_HOME      /usr/local/openjdk21
+# setenv FLUTTER_HOME   "$home/develop/flutter"
+
+# ---------------------------------------------------------------------------
+# machine-local secrets / tokens (MUST NOT hit the repo
+# ---------------------------------------------------------------------------
+# setenv OPENAI_API_KEY "..."
+
+
+# ---------------------------------------------------------------------------
+# custom dir that is NOT one of the *_HOME vars above: set env AND
+# add to $path yourself
+# ---------------------------------------------------------------------------
+# setenv GOPATH         "$home/.local/go"
+# if ( -d "$GOPATH/bin" && "$path" !~ *"$GOPATH/bin"* ) then
+#       set path = ( "$GOPATH/bin" $path)
+# endif
+
+# ---------------------------------------------------------------------------
+# per-host branch example
+# ---------------------------------------------------------------------------
+# if ( "$host" == "ryzen-ws" ) then
+#       setenv CUDA_HOME /opt/cuda
+#       if ( -d "$CUDA_HOME/bin" ) set path = ( $CUDA_HOME/bin $path)
+# endif
+
+end:
+        onintr
+
