@@ -12,4 +12,3 @@ if ( -x /usr/bin/resizewin ) /usr/bin/resizewin -z
 
 # Load specific settings on each login if present
 if ( -r "$home/.config/csh/login" ) source "$home/.config/csh/login"
-

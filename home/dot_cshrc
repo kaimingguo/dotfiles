@@ -7,4 +7,3 @@
 
 # Load specific settings at beginning of execution by each shell if present
 if ( -r "$home/.config/csh/rc" ) source "$home/.config/csh/rc"
-
