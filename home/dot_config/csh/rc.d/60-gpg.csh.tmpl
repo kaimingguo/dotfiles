@@ -1,0 +1,23 @@
+#!/bin/csh -f
+# -*- mode: csh; tab-width: 8; indent-tabs-mode: t -*- ;; Emacs
+# vi: set filetype=csh tabstop=8 shiftwidth=8 noexpandtab :: Vi/ViM
+
+onintr -
+if (! $?prompt ) goto end
+if (! -e `where gpg` ) goto end
+
+setenv GPG_TTY 	`tty`
+
+# Route SSH auth through gpg-agent unless another agent claimed the socket.
+if ( ! $?SSH_AUTH_SOCK ) then
+	if ( -e `where gpgconf` ) then
+		setenv SSH_AUTH_SOCK `gpgconf --list-dirs agent-ssh-socket`
+	endif
+endif
+
+if ( -e `where gpg-connect-agent` ) then
+	gpg-connect-agent updatestartuptty /bye >& /dev/null
+endif
+
+end:
+	onintr

@@ -1,11 +1,20 @@
 # -*- mode: csh; tab-width: 8; indent-tabs-mode: t -*- ;; Emacs
 # vi: set filetype=csh tabstop=8 shiftwidth=8 noexpandtab :: Vi/ViM
 
-alias h		history 25
+alias h		'history 25 \!* 25'
 alias j		jobs -l
+alias ls 	ls --color
 alias la	ls -aF
 alias lf	ls -FA
 alias ll	ls -lAF
+
+alias md	mkdir -p
+alias rd 	rmdir
+alias cd	pushd
+
+if ( -e `where vim` ) then
+	alias vi vim
+endif
 
 # These are normally set through /etc/login.conf.  You may override them here
 # if wanted.
@@ -14,7 +23,9 @@ alias ll	ls -lAF
 # umask 22
 
 setenv	EDITOR	vi
+setenv 	VISUAL 	${EDITOR}
 setenv	PAGER	less
+setenv 	BLOCKSIZE M
 
 if ($?prompt) then
 	# An interactive shell -- set some stuff up
@@ -28,11 +39,17 @@ if ($?prompt) then
 	# Use history to aid expansion
 	set autoexpand
 	set autorehash
-	set mail = (/var/mail/$USER)
+	#set mail = (/var/mail/$USER)
 	if ( $?tcsh ) then
+		set pushdsilent
+		set pushdtohome
+
 		bindkey "^W" backward-delete-word
 		bindkey -k up history-search-backward
 		bindkey -k down history-search-forward
 	endif
 
+	if ( $uid == 0 ) then
+		unset savehist
+	endif
 endif

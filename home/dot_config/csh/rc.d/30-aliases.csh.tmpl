@@ -1,0 +1,30 @@
+#!/bin/csh -f
+# -*- mode: csh; tab-width: 8; indent-tabs-mode: t -*- ;; Emacs
+# vi: set filetype=csh tabstop=8 shiftwidth=8 noexpandtab :: Vi/ViM
+
+onintr -
+if (! $?prompt ) goto end
+
+alias c		clear
+alias q 	exit
+
+alias today     'date -u "+%Y-%m-%d %H:%M:%S"'
+
+alias .		pwd
+alias ..	cd ..
+alias ../	cd ../
+alias ...	cd ../..
+alias .../	cd ../../
+alias \~	cd ~
+alias -		cd -
+alias /		cd /
+
+{{ if eq .chezmoi.os "darwin" -}}
+alias tmux 	'env TERM=screen-256color-bce tmux'
+alias xcode 	'open -a Xcode'
+alias safari 	'open -a Safari'
+alias brave 	'open -a "Brave Browser"'
+{{- end }}
+
+end:
+	onintr
