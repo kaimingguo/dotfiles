@@ -1,0 +1,14 @@
+# ripgrep config — loaded via $RIPGREP_CONFIG_PATH
+# NB: do NOT put --sort here; it forces single-threaded output and
+# breaks streaming for fzf live-grep (:Rg, vg). Sort per-invocation instead.
+
+--hidden
+--line-number
+--no-heading
+--smart-case
+
+# Common noise to skip globally
+--glob=!.git/
+--glob=!node_modules/
+--glob=!*.min.js
+--glob=!*.lock
