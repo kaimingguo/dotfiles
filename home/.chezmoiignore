@@ -1,19 +1,17 @@
-{{- if ne .chezmoi.os "windows" -}}
+{{- if ne .chezmoi.os "windows" }}
 AppData
 vimfiles
 _vimrc
-{{- else -}}
+{{- else if ne .work }}
+.config/git/config-work
+{{- else }}
 .config
 .vim
+.gnupg
 .bash_logout
 .bashrc
-.cshrc
 .login
 .profile
 .tmux.conf
 .vimrc
-{{- end -}}
-
-{{- if .work -}}
-.config/git/config-work
-{{- end -}}
+{{- end }}

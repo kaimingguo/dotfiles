@@ -1,0 +1,4 @@
+{{- $pinentryMac := lookPath "pinentry-mac" -}}
+{{- if and (eq .chezmoi.os "darwin") $pinentryMac }}
+pinentry-program {{ $pinentryMac }}
+{{- end }}
