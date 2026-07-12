@@ -57,8 +57,14 @@ foreach _tool_bin ( $home/.jbang/bin $home/.yarn/bin $home/.cargo/bin $home/.pub
 end
 unset _tool_bin
 
+# Rust / Cargo
 if ( -e "$home/.cargo/env.tcsh" ) then
 	source "$home/.cargo/env.tcsh"
+endif
+
+# Antigravity IDE
+if ( -d "$home/.antigravity-ide/antigravity-ide/bin" && "$path" !~ *"$home/.antigravity-ide/antigravity-ide/bin"* ) then
+	set path = ( $path $home/.antigravity-ide/antigravity-ide/bin )
 endif
 
 # User private bins last so they take precedence (prepended).
