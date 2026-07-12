@@ -11,7 +11,7 @@ if ( -e `where fd` ) then
 	setenv FZF_ALT_C_COMMAND	'fd --type d --hidden --follow --exclude .git'
 	setenv FZF_CTRL_T_COMMAND	"$FZF_DEFAULT_COMMAND"
 else if ( -e `where rg` ) then
-	setenv FZF_DEFAULT_COMMAND	'rg --files --hidden --glob !.git'
+	setenv FZF_DEFAULT_COMMAND	'rg --files --hidden'
 	setenv FZF_CTRL_T_COMMAND	"$FZF_DEFAULT_COMMAND"
 endif
 

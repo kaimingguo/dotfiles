@@ -10,7 +10,7 @@ if ( $?ANDROID_HOME ) then
 	endif
 
 	foreach _bin ( cmdline-tools/latest/bin platform-tools tools tools/bin )
-		if ( -d "$ANDROID_HOME/${_bin}" && "$path" !~ *"$ANDROID_HOME/${_bin}"* )
+		if ( -d "$ANDROID_HOME/${_bin}" && "$path" !~ *"$ANDROID_HOME/${_bin}"* ) then
 			set path = ( $path "$ANDROID_HOME/${_bin}" )
 		endif
 	end
@@ -56,6 +56,10 @@ foreach _tool_bin ( $home/.jbang/bin $home/.yarn/bin $home/.cargo/bin $home/.pub
 	endif
 end
 unset _tool_bin
+
+if ( -e "$home/.cargo/env.tcsh" ) then
+	source "$home/.cargo/env.tcsh"
+endif
 
 # User private bins last so they take precedence (prepended).
 if ( -d "$home/bin" && "$path" !~ *"$home/bin"* ) then

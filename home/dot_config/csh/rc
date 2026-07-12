@@ -27,7 +27,7 @@ setenv 	VISUAL 	${EDITOR}
 setenv	PAGER	less
 setenv 	BLOCKSIZE M
 
-if ($?prompt) then
+if ( $?prompt ) then
 	# An interactive shell -- set some stuff up
 	set prompt = "%N@%m:%~ %# "
 	set promptchars = "%#"
@@ -53,3 +53,19 @@ if ($?prompt) then
 		unset savehist
 	endif
 endif
+
+# include rc.d directory configuration
+set _rcd_dir = "$home/.config/csh/rc.d"
+if ( -d "$_rcd_dir" && -r "$_rcd_dir" ) then
+	set _nonomatch_saved = $?nonomatch
+	set nonomatch
+	foreach rc_file ( "$_rcd_dir"/*.csh )
+		if ( -f "$rc_file" && -r "$rc_file" ) then
+			source "$rc_file"
+		endif
+	end
+	unset rc_file
+	if ( ! $_nonomatch_saved ) unset nonomatch
+	unset _nonomatch_saved
+endif
+unset _rcd_dir
