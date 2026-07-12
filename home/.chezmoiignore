@@ -13,3 +13,7 @@ _vimrc
 .tmux.conf
 .vimrc
 {{- end -}}
+
+{{- if .work -}}
+.config/git/config-work
+{{- end -}}

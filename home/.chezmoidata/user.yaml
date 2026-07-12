@@ -1,0 +1,12 @@
+github:
+  username: kaimingguo
+  email: 3358791+kaimingguo@users.noreply.github.com
+git:
+  name: Kaiming Guo
+  email: me@kaiming.io
+git_work:
+  name: Augustin Kuo 郭凱銘 (奧圖碼)
+  email: augustin.kuo@optoma.com
+  include:
+    pattern: "gitdir:**/opt-*/"
+    path: config-work

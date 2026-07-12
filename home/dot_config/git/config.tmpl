@@ -1,0 +1,8 @@
+[user]
+    name = {{ .git.name | quote }}
+    email = {{ .git.email }}
+
+{{- if .work }}
+[includeIf "{{ .git_work.include.pattern }}"]
+    path = {{ .git_work.include.path }}
+{{- end }}
