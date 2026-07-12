@@ -1,7 +1,10 @@
 {{- if ne .chezmoi.os "windows" -}}
 AppData
 {{- else -}}
+.bash_logout
+.bashrc
 .config
 .cshrc
 .login
+.profile
 {{- end -}}
